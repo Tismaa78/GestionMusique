@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des labels{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Liste des labels</h1>
+<hr>
+<div class="row pt-2">
+    {% for leLabel in lesLabels %}
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div class="card mb-3">
+            <h3 class="card-header"><a href="{{path("ficheLabel", {"id" : leLabel.id})}}">{{leLabel.nom}}</a></h3>
+            <div class="card-body">
+             <h5>{{leLabel.description}} </h5></a> 
+            </div>
+            <img class="mx-auto d-block" style="height: auto; width: 200px; display: block;" src="{{leLabel.logo}}" alt="">
+            <div class="card-body">
+              <p class="card-text">{{leLabel.anneeCreation}}</p>
+            </div>
+            <li class="list-group-item">                
+                  <span class="badge" style="background-color: red;">{{leLabel.type}}</span>               
+              </li>
+          </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

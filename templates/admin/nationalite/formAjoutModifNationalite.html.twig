@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout/Modification nationalité{% endblock %}
+
+{% block body %}
+
+<h1 class="pt-2 text-center">
+    {% if (app.request.attributes.get('_route') == 'admin_nationalites_ajout') %}
+        Ajout
+    {% else %}
+        Modification
+    {% endif %}
+    d'une nationalité
+</h1>
+
+{{ form_start(formNationalite) }}
+
+{{ form_row(formNationalite.libelle) }}
+
+<div class="row">
+    <div class="col"><a href="{{ path('admin_nationalites') }}" class="btn btn-warning btn-block">Annuler</a></div>
+    <div class="col"><input type="submit" class="btn btn-success btn-block" value="Valider"></div>
+</div>
+
+{{ form_end(formNationalite) }}
+
+{% endblock %}

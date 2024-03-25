@@ -1,0 +1,15 @@
+.home h1, p{
+    padding-top: 10px;
+    text-align: center;
+}
+
+.miniature 
+{
+    max-width: 80px;
+    height: auto;
+}
+
+.return h4
+{
+    text-align: center;
+}

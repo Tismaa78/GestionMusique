@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche de la Nationalité{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Fiche de la Nationalité : {{ laNationalite.libelle }}</h1>
+<hr>
+<div class="container pt-2">
+    <div class="row">
+        {% for artiste in artistes %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <h5 class="card-header">{{ artiste.nom }}</h5>
+                    <div class="card-body">
+                        <img class="img-fluid" src="{{ artiste.image }}" alt="{{ artiste.nom }}">
+                        <p class="card-text">{{ artiste.description }}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                {% if artiste.type == 0 %}
+                                    Artiste solo
+                                {% else %}
+                                    Groupe
+                                {% endif %}
+                            </li>
+                            <li class="list-group-item">{{ artiste.site }}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('fiche_artiste', {'id': artiste.id}) }}" class="btn btn-primary">Voir la fiche</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

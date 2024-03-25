@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche des Labels{% endblock %}
+
+{% block body %}
+
+<div class="d-grid gap-2">
+  <button class="btn btn-lg btn-primary" type="button">Revenir à la liste des labels</button>
+</div>
+
+<h1 class="text-warning text-center border-bottom mt-3 pb-3"> {{leLabel.nom}} </h1>
+
+<div class="row border-bottom">
+  <div class="col-md-6">
+      <img src="{{leLabel.logo}}" class="pt-4 px-4 pb-4" style="height: auto; width: 400px; display: block;" alt="">
+  </div>
+  <div class="col-md-6">
+      <p class="text-start">{{leLabel.anneeCreation}}</p>
+      <p class="text-start"><span class="badge bg-primary">{{leLabel.type}}</span></p>
+  </div>
+</div>
+
+<table class="table table-hover mx-auto">
+  <thead>
+    <tr>
+      <th scope="col-3">Nom Album</th>
+      <th scope="col-4">Artistes</th>
+      <th scope="col-1">Année</th>
+      <th scope="col-1">Style</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for leAlbum in leLabel.albums %}
+      <tr>
+        <td><a href="{{path("ficheAlbum", {"id" : leAlbum.id})}}">{{leAlbum.nom}} </a> </td>
+        <td> <a href="{{path("ficheArtiste", {"id" : leAlbum.artiste.id})}}">{{leAlbum.artiste.nom}}</a></td>
+        <td> {{leAlbum.date}} </td>
+        <td> 
+          {% for leStyle in leAlbum.styles %}
+          <span class="badge" style="background-color: {{leStyle.couleur}};">{{leStyle.nom}}</span>
+        {% endfor %}</td>        
+      </tr>      
+      {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

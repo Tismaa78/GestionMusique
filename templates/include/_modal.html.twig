@@ -1,0 +1,46 @@
+<div id="modalSimple" class="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <a id="btn-action" href="" class="btn btn-primary modal-action"></a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+// Sélectionner tous les éléments de la balise a avec l'attribut data-lien
+var elements = document.querySelectorAll('a[data-lien]');
+
+function handleClick(event) {
+
+    // Récupérer les valeurs des attributs 
+    var lien = this.getAttribute('data-lien');
+    var titre = this.getAttribute('data-titre');
+    var message = this.getAttribute('data-message');
+    var libelleBouton = this.getAttribute('data-libelleBouton');
+
+    // Affecter les valeurs aux éléments de la modal
+    document.getElementById('btn-action').setAttribute('href', lien);
+    document.querySelector('.modal-title').textContent = titre;
+    document.querySelector('.modal-body').textContent = message;
+    document.querySelector('.modal-action').textContent = libelleBouton;
+}
+
+// Attacher la fonction de gestionnaire d'événement à chaque élément de la balise a
+elements.forEach(function(element) {
+    element.addEventListener('click', handleClick);
+});
+
+</script>

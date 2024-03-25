@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche des albums{% endblock %}
+
+{% block body %}
+{% set nbAlbums = leAlbum.morceaux|length %}
+<h1 class="text-warning text-center border-bottom mt-3 pb-3"> {{leAlbum.nom}}</h1>
+
+<div class="row border-bottom">
+  <div class="col-md-6">
+      <img src="{{leAlbum.image}}" class="pt-4 px-4 pb-4" style="height: auto; width: 400px; display: block;" alt="">
+  </div>
+  <div class="col-md-6">
+      <p class="text-start">{{leAlbum.date}}</p>
+      {% for style in leAlbum.styles %}
+          <span class="badge" style="background-color: red;"> {{style.nom}} </span>
+      {% endfor %} 
+      <a href="{{path("ficheLabel", {"id" : leAlbum.labell.id})}}"><span class="badge" style="background-color: red;">{{ leAlbum.labell.nom }}</span></a>
+      {{nbAlbums}}
+        {% if nbAlbums>1 %} 
+            morceaux 
+        {% else %} 
+          morceau
+      {% endif %}
+      
+  </div>
+</div>
+         
+
+<table class="table table-hover mx-auto">
+  <thead>
+    <tr>
+      <th scope="col-3">Piste</th>
+      <th scope="col-4">Titre</th>
+      <th scope="col-1">Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for leMorceau in leAlbum.morceaux %}
+      <tr>
+        <td> {{leMorceau.titre}} </td>
+        <td>{{leMorceau.duree}}</td>
+      </tr>      
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+{% endblock %}

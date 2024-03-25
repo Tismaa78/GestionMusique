@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des nationalités{% endblock %}
+
+{% block body %}
+
+<h1 class="pt-2 text-center">Gestion des nationalités</h1>
+<a href="{{ path('admin_nationalites_ajout') }}" class="btn btn-primary">Ajouter une nationalité</a>
+<hr>
+ <table class="table table-hover">  
+    <thead>
+        <tr>
+        <th scope="col-1"></th>
+        <th scope="col-2">Libellé</th>
+        <th scope="col-7">Détails</th>
+        <th scope="col-2">Actions</th>
+        </tr>
+    </thead>
+    {% for nationalite in lesNationalites %}
+    <tbody>
+        <tr>
+            <td class="col-1"></td>
+            <td class="col-2 text-secondary">{{ nationalite.libelle }}</td>
+            <td class="col-7">
+                <!-- Ajoutez d'autres détails ici si nécessaire -->
+            </td>
+            <td class="col-2">
+                <a href="{{ path('admin_nationalites_modif', {'id': nationalite.id}) }}" class="btn btn-primary"><i class="fas fa-pen"></i> Modifier</a>
+                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalSimple" data-titre="Suppression d'une nationalité" data-message="Supprimer {{ nationalite.libelle }} ?" data-libelleBouton="Supprimer la nationalité" data-lien ="{{ path('admin_nationalites_supp', {'id': nationalite.id}) }}"><i class="far fa-trash"></i> Supprimer</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<div class="navigation mx-auto">
+    <!-- Si vous utilisez une pagination, insérez-la ici -->
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {% include "include/_modal.html.twig" %}
+{% endblock %}

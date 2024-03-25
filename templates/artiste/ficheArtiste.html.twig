@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche des artistes{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Fiche des artistes</h1>
+<hr>
+<div class="row pt-2">
+
+        <div class="card mb-3">
+            <h3 class="card-header">{{leArtiste.nom}}</h3>
+            <div class="row">
+              <div class="col-3 d-flex align-items-center mx-auto">
+                  <img class="mx-auto d-block" src=" {{leArtiste.image}} " alt="">
+              </div>
+              <div class="col">
+                  <div class="card-body">
+                  <a href="" class="badge badge-success"><h5 class="card-title">{{leArtiste.albums|length}} album </h5></a> 
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{leArtiste.description}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"> {% if leArtiste.type == 0 %} 
+                    Artiste solo {% else %} Groupe {% endif %}</li>
+                  <li class="list-group-item">{{leArtiste.site}} </li>
+                </ul></div>
+            </div>         
+   </div>
+</div>
+
+
+<table class="table table-hover mx-auto">
+  <thead>
+    <tr>
+      <th scope="col-3">Photo</th>
+      <th scope="col-4">Nom</th>
+      <th scope="col-1">Date</th>
+      <th scope="col-3">Styles</th>
+      <th scope="col-1">Morceaux</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for leAlbum in leArtiste.albums %}
+      <tr>
+        <th><img class="miniature" src="{{leAlbum.image}}" alt=""></th>
+        <td scope="row">{{leAlbum.nom}}</td>
+        <td> {{leAlbum.date}} </td>
+        <td>{{leAlbum.Morceaux|length}}</td>
+      </tr>      
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+{% endblock %}

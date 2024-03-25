@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Labels{% endblock %}
+
+{% block body %}
+
+<h1 class="pt-2 text-center">Gestion des Labels</h1>
+<a href="{{path("admin_labell_ajout")}}" class="btn btn-primary">Ajouter un label</a>
+<hr>
+ <table class="table table-hover">  
+    <thead>
+        <tr>
+        <th scope="col-1"></th>
+        <th scope="col-2">Nom</th>
+        <th scope="col-7">Detail</th>
+        <th scope="col-2">Actions</th>
+        </tr>
+    </thead>
+{% for leLabel in lesLabels %}
+     
+        <tbody>
+          <tr>
+            <td class="col-1"><img class="mx-auto d-block" style="height: auto; width: 50px;" src="{{leLabel.logo}}" alt=""></td>
+            <td class="col-2 text-secondary">{{leLabel.nom}}</td>
+            <td class="col-7">
+                <p class="d-flex flex-row">
+                    {# <span class="align-self-center badge badge-success"> {{nbAlbum}} </span> #}
+                    <span class="align-self-center mx-3 badge bg-secondary"> {% if leLabel.type == 0 %} Indépendant {% else %} Groupe {% endif %} </span>
+                </p>
+                <p>{{leLabel.description}}</p>
+            </td>
+            <td class="col-2">
+                <a href="{{path("admin_labell_modif", {'id': leLabel.id})}}" class="btn btn-primary"><i class="fas fa-pen"></i> Modifier</a>
+                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalSimple" data-titre="Suppression du label" data-message="Supprimer {{leLabel.nom}} ?" data-libelleBouton="Supprimer le label ?" data-lien ="{{path('admin_labell_supp', {'id' : leLabel.id})}}"><i class="far fa-trash"></i> Supprimer</a>
+               
+            </td>
+          </tr>
+{% endfor %}
+     </tbody>
+</table>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    {% include "include/_modal.html.twig" %}
+{% endblock %}

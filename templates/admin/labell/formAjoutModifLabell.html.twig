@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout label{% endblock %}
+
+{% block body %}
+
+<h1 class="pt-2 text-center">
+{% if (app.request.attributes.get('_route')== "admin_labell_ajout") %}
+    Ajout
+    {% else %}
+    Modification
+{% endif %}
+d'un Labell
+</h1>
+
+{{form_start(formLabell)}}
+
+{{form_row(formLabell.nom)}}
+{{form_row(formLabell.description)}}
+
+<div class="row">
+    <div class="col">{{form_row(formLabell.anneeCreation)}}</div>
+    <div class="col">{{form_row(formLabell.type)}}</div>
+</div>
+
+{{form_row(formLabell.logo)}}
+
+<div class="row">
+    <div class="col"><a href="{{path("admin_labell")}}" class="btn btn-warning btn-block">Annuler</a></div>
+    <div class="col"><input type="submit" class="btn btn-success btn-block" value="valider"></div>
+</div>
+
+
+
+{{form_end(formLabell)}}
+
+{% endblock %}
